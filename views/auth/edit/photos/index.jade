@@ -1,0 +1,23 @@
+extends ../../../layout
+
+block title
+	title ФОТОПОТОК
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/styles/add.css')
+
+block content_scripts
+	script(type='text/javascript', src='/scripts/lists.js')
+
+block content_right
+
+block content
+	a.back_link(href='/auth') < Назад
+	.title ФОТОПОТОК
+	br
+	.main_menu_block
+		each photo in photos
+			.photo
+				a.rm_photo(href='#', id=photo._id)= 'удалить '
+				||&nbsp;
+				a(href='/auth/edit/photos/' + photo._id)= photo.ru.description

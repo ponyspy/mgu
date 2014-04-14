@@ -1,0 +1,15 @@
+extends ../layout
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/styles/add.css')
+
+block content
+	.title ЛОГИН
+	form(action='/login', method='post')
+		.form_title Логин:
+		input(type='text', name='login',)
+		.form_title Пароль:
+		input(type='password', name='password',)
+		br
+		br
+		input(type='submit', value='ВХОД')

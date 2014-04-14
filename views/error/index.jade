@@ -1,0 +1,12 @@
+extends ../layout
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/styles/error.css' + version)
+
+block content
+	.error_title= 'ОШИБКА ' + status
+	if (status == 404)
+		.error_s_title нет такой страницы
+	else if (status == 500)
+		.error_s_title неправильное значение адреса
+	img.error_image(src='/images/design/error.jpg')

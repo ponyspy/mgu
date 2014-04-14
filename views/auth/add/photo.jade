@@ -1,0 +1,44 @@
+extends ../../layout
+
+block title
+	title ДОБАВИТЬ ФОТО
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/styles/add.css')
+	if (session.user_id == '51e3a88603ba37c589000001')
+		link(rel='stylesheet', type='text/css', href='/styles/lol/bazova.css')
+
+block content_scripts
+	script(type='text/javascript', src='/scripts/add.js')
+	if (session.user_id == '51e3a88603ba37c589000001')
+		script(type='text/javascript', src='/scripts/lol/bazova.js')
+
+block content_right
+	.navigator
+		.nav_title ФОТО
+		.nav_project_children
+		br
+		b.nav_settings_title настройки
+		//- .draft черновик
+		.toggle_eng перевод
+		br
+		b.form_submit ОТПРАВИТЬ
+
+
+block content
+	a.back_link(href='/auth') < Назад
+	.title ДОБАВИТЬ ФОТО
+	br
+	form(action="/auth/add/photo", method="post", enctype="multipart/form-data")
+		.form_title Автор:
+		input.ru(type="text", name="ru[author]",)
+		input.en(type="text", name="en[author]", disabled)
+		.form_title Описание:
+		textarea.ru(name="ru[description]", rows="8",)
+		textarea.en(name="en[description]", rows="8", disabled)
+		.form_title Фото:
+		input(type="file", name="img")
+		.form_title Стиль:
+		select(name='style')
+			option(value='black') Черный
+			option(value='white') Белый

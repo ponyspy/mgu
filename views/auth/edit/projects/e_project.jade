@@ -1,0 +1,54 @@
+extends ../../../layout
+
+block title
+	title= 'РЕДАКТИРОВАТЬ СПЕЦПРОЕКТ: ' + project.ru.title.toUpperCase()
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/styles/add.css')
+
+block content_scripts
+	script(type='text/javascript', src='/scripts/schedule.js')
+	script(type='text/javascript', src='/scripts/add.js')
+
+block content_right
+	.navigator
+		.nav_title СПЕЦПРОЕКТ
+		.nav_project_children
+		br
+		b.nav_settings_title настройки
+		//- .draft черновик
+		.toggle_eng перевод
+		br
+		b.form_submit ОТПРАВИТЬ
+
+block content
+	.form_block
+		a.back_link(href='/auth/edit/projects') < Назад
+		.title РЕДАКТИРОВАТЬ СПЕЦПРОЕКТ
+		form(action="", method="post", enctype="multipart/form-data")
+			.form_title Название:
+			input.ru(type="text", name="ru[title]", value=project.ru.title)
+			input.en(type="text", name="en[title]", disabled)
+			.form_title Описание:
+			textarea.ru(name="ru[description]", rows="8",)= project.ru.description
+			textarea.en(name="en[description]", rows="8", disabled)
+			.form_title Cобытия:
+			if (project.events.length > 0)
+				each p_event in project.events
+					.snake
+						input.minus(type="button", value="-")
+						select(name='events')
+							option(value='') нет
+							each event in events
+								option(value=event._id, selected=(p_event._id.toString() == event._id.toString()))= event.ru.title
+						br
+			else
+				.snake
+					input.minus(type="button", value="-")
+					select(name='events')
+						option(value='') нет
+						each event in events
+							option(value=event._id)= event.ru.title
+					br
+			br
+			input.plus(type="button", value="+")

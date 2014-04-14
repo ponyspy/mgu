@@ -1,0 +1,75 @@
+extends ../../../layout
+
+block title
+	title РЕДАКТИРОВАТЬ НОВОСТЬ
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/styles/add.css')
+
+block content_scripts
+	script(type='text/javascript', src='/scripts/add.js')
+
+block content_right
+	.navigator
+		.nav_title НОВОСТЬ
+		.nav_project_children
+		br
+		b.nav_settings_title настройки
+		//- .draft черновик
+		.toggle_eng перевод
+		br
+		b.form_submit ОТПРАВИТЬ
+
+block content
+	.form_block
+		a.back_link(href='/auth/edit/news') < Назад
+		.title РЕДАКТИРОВАТЬ НОВОСТЬ
+		br
+		form(action="", method="post", enctype="multipart/form-data")
+			.form_title Заголовок:
+			input.ru(type="text", name="ru[title]", value=news.ru.title)
+			input.en(type="text", name="en[title]", value=news.en.title, disabled)
+			.form_title Подзаголовок:
+			input.ru(type="text", name="ru[s_title]", value=news.ru.s_title)
+			input.en(type="text", name="en[s_title]", value=news.en.s_title, disabled)
+			.form_title Описание:
+			textarea.ru(name="ru[body]", rows="8",)= news.ru.body
+			textarea.en(name="en[body]", rows="8", disabled)= news.en.body
+			.form_title Постер:
+			input(type="file", name="poster")
+			.form_title Фото:
+			input(type="file", name="photo")
+			.form_title Автор фото:
+			input.ru(type="text", name="ru[p_author]", value=news.ru.p_author)
+			input.en(type="text", name="en[p_author]", value=news.en.p_author, disabled)
+			.form_title Статус:
+			select(name='status')
+				option(value='') нет
+				option(value='hot', selected=news.status=='hot') важная
+				option(value='pin', selected=news.status=='pin') закрепленная
+			.form_title Прикрепить события
+			.snake
+				input.back(type="button", value="<")
+				if (news.events.length == 0)
+					select(name='events')
+						option(value='') нет
+						each event in events
+							option(value=event._id)= event.ru.title
+				else
+					each n_event in news.events
+						select(name='events')
+							option(value='') нет
+							each event in events
+								option(value=event._id, selected=n_event._id.toString() == event._id.toString())= event.ru.title
+				input.forward(type="button", value=">")
+			.form_title Категория:
+			select(name='tag')
+				option(value='performance') спектакль
+				option(value='lecture') лекция
+				option(value='masterclass') мастер-класс
+				option(value='exhibition') выставка
+				option(value='concert') концерт
+				option(value='education') институт театра
+				option(value='blackbox') blackbox
+				option(value='children') детский цим
+				option(value='storytallyng') сторителлинг

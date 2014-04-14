@@ -1,0 +1,93 @@
+extends ../../layout
+
+block title
+	title КОНСТРУКТОР
+
+block content_style
+	link(rel="stylesheet", type="text/css", href="/styles/edit.css" + version)
+	link(rel='stylesheet', type='text/css', href='/styles/content.css' + version)
+	link(rel="stylesheet", type="text/css", href="/styles/font-awesome/css/font-awesome.min.css" + version)
+	link(rel="stylesheet", type="text/css", href="/styles/popclip.css" + version)
+
+block content_scripts
+	script(type='text/javascript', src='/scripts/edit.js' + version)
+	//- script(type='text/javascript', src='/scripts/back.js' + version)
+	script(type='text/javascript', src='/scripts/mfupload.js' + version)
+	script(type="text/javascript", src='/scripts/jquery.popline.min.js' + version)
+	script(type="text/javascript", src='/scripts/jquery-ui-1.10.3.custom.min.js' + version)
+
+block content_right
+	.content_right_block
+		.ticket(contenteditable) Тикет для события
+		.settings ПАРАМЕТРЫ
+			.s_item.toggle_lang язык
+			.s_item.toggle_grid направляющие
+			.s_item.empty_colums пустые колонки
+			.s_item.clear_format очистить формат
+			.s_item.raw_text исходный текст
+			br
+			.s_cat зал:
+			select.hall(name='hall')
+				option(value='main') большой зал
+				option(value='black') черный зал
+				option(value='white') белый зал
+				option(value='cafe') кафе
+				option(value='lobby') фойе
+				option(value='301') комната 301
+				option(value='306') комната 306
+			//- .s_cat спецпроект:
+			//- select.project(name='project')
+			//- 	option(value='false') нет
+			//- 	option(value='education') институт театра
+			//- 	option(value='blackbox') blackbox
+			//- 	option(value='children') детский цим
+			.s_cat категория:
+			.category
+				input(type='checkbox', name='category', value='performance')
+				|спектакль
+				br
+				input(type='checkbox', name='category', value='lecture')
+				|лекция
+				br
+				input(type='checkbox', name='category', value='masterclass')
+				|мастер-класс
+				br
+				input(type='checkbox', name='category', value='exhibition')
+				|выставка
+				br
+				input(type='checkbox', name='category', value='concert')
+				|концерт
+				br
+				input(type='checkbox', name='category', value='storytallyng')
+				|сторителлинг
+		.upload СОЗДАТЬ
+
+mixin memberList(marker, status)
+	.marker(class=status)
+		.m_title= marker + ':'
+		.m_edit= '⊙'
+		.m_list
+
+block content
+	- var ru_column_one = {'director': 'Режиссер', 'author': 'Автор', 'playwright': 'Драматург', 'choreographer': 'Хореограф', 'composer': 'Композитор', 'artist': 'Художник', 'actor': 'Исполнители', 'producer': 'Продюсер', 'curator': 'Куратор', 'lecturer': 'Лектор', 'theoretician': 'Теоретик', 'art_director': 'Художественный руководитель', 'scenographer': 'Сценограф'}
+	- var ru_column_two = {'photographer': 'Фотограф', 'sub_director': 'Помощник режисера', 'tech_director': 'Технический директор', 'video_artist': 'Видеохудожник', 'light_artist': 'Художник по свету', 'audio_director': 'Звукорежисер', 'multi_artist': 'Мультимедиахудожник', 'consultant': 'Консультант', 'effects': 'Спецэффекты'}
+	.image_upload
+		.p_author
+			.a_title Фото:
+			.a_name(contenteditable='plaintext-only') Автор фото
+		input(type='file', name='image', data-post='/', data-crop='true')
+	.content_body
+		.title(lang='ru', contenteditable) Заголовок
+		.s_title(lang='ru', contenteditable) Подзаголовок
+		.members
+			.column#one
+				each marker, status in ru_column_one
+					+memberList(marker, status)
+			.column#two
+				each marker, status in ru_column_two
+					+memberList(marker, status)
+			.s_column
+				.age(contenteditable) 0
+				.duration(contenteditable) 1 ч. 20 мин.
+				.comment(contenteditable) Комментарий для события
+		.description(lang='ru', contenteditable) Описание события

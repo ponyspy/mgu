@@ -1,0 +1,12 @@
+- var version = '?ver=5'
+meta(charset="utf-8")
+link(rel='shortcut icon', href='/images/design/favicon.png', type='image/png')
+block title
+link(rel='stylesheet', type='text/css', href='/styles/main.css' + version)
+block content_style
+	- var version = '?ver=5'
+script(type='text/javascript', src='/scripts/jquery.js' + version)
+script(type='text/javascript', src='/scripts/global.js' + version)
+script(type='text/javascript', src='/scripts/jquery.scrollintoview.min.js' + version)
+block content_scripts
+	- var version = '?ver=5'

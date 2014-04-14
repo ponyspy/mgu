@@ -1,0 +1,71 @@
+extends ../../../layout
+
+block title
+	title ДОБАВИТЬ СОБЫТИЯ
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/styles/add.css')
+
+block content_scripts
+	script(type='text/javascript', src='/scripts/schedule.js')
+
+block content_right
+
+
+block content
+	.form_block
+		- var d = schedule.date.getDate()
+		- d = d < 10 ? '0' + d : d
+		- var m = schedule.date.getMonth() + 1
+		- m = m < 10 ? '0' + m : m
+		a.back_link(href='/auth/add/schedule/' + schedule.date.getFullYear()) < Назад
+		.title= 'ДОБАВИТЬ СОБЫТИЯ НА ' + d + '.' + m
+		form(action="", method="post", enctype="multipart/form-data")
+			.form_section События
+			.date_event
+				if (schedule.events.length > 0)
+					each item, index in schedule.events
+						.snake
+							input.minus(type="button", value="-")
+							input(type='checkbox', name='events[' + index + '][banner]', checked=item.banner=='true', value='true')
+							|баннер
+							input(type='checkbox', name='events[' + index + '][premiere]', checked=item.premiere=='true', value='true')
+							|премьера
+							select(name='events[' + index + '][time][hours]')
+								option(value='') Часы
+								- for (var i=0; i<24; i++)
+									option(value=i, selected=(item.time.hours == i))= i
+							select(name='events[' + index + '][time][minutes]')
+								option(value='') Минуты
+								- for (var i=0; i<=50; i+=10)
+									- var mm = (i == 0 ? '00' : i)
+									option(value=mm, selected=(item.time.minutes == mm))= mm
+							select(name='events[' + index + '][event]')
+								option(value='') -- События
+								each event in events
+									option(value=event._id, selected=(event._id.toString() == item.event._id.toString()))= event.ru.title.slice(0, 30)
+				else
+					.snake
+						input.minus(type="button", value="-")
+						input(type='checkbox', name='events[0][banner]', value='true')
+						|баннер
+						input(type='checkbox', name='events[0][premiere]', value='true')
+						|премьера
+						select(name='events[0][time][hours]')
+							option(value='') Часы
+							- for (var i=0; i<24; i++)
+								option(value=i)= i
+						select(name='events[0][time][minutes]')
+							option(value='') Минуты
+							option(value='00') 00
+							- for (var i=10; i<60; i+=10)
+								option(value=i)= i
+						select(name='events[0][event]')
+							option(value='') -- События
+							each event in events
+								option(value=event._id)= event.ru.title.slice(0, 30)
+				br
+				input.plus(type="button", value="+")
+				br
+				br
+				input(type="submit", value="Сохранить")

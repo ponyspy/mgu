@@ -1,0 +1,40 @@
+extends ../../../layout
+
+block title
+	title РЕДАКТИРОВАТЬ ФОТО
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/styles/add.css')
+
+block content_scripts
+	script(type='text/javascript', src='/scripts/add.js')
+
+block content_right
+	.navigator
+		.nav_title ФОТО
+		.nav_project_children
+		br
+		b.nav_settings_title настройки
+		//- .draft черновик
+		.toggle_eng перевод
+		br
+		b.form_submit ОТПРАВИТЬ
+
+
+block content
+	a.back_link(href='/auth/edit/photos') < Назад
+	.title РЕДАКТИРОВАТЬ ФОТО
+	br
+	form(action="", method="post", enctype="multipart/form-data")
+		.form_title Автор:
+		input.ru(type="text", name="ru[author]", value=photo.ru.author)
+		input.en(type="text", name="en[author]", disabled)
+		.form_title Описание:
+		textarea.ru(name="ru[description]", rows="8",)= photo.ru.description
+		textarea.en(name="en[description]", rows="8", disabled)
+		.form_title Фото:
+		input(type="file", name="img")
+		.form_title Стиль:
+		select(name='style')
+			option(value='black', selected=photo.style=='black') Черный
+			option(value='white', selected=photo.style=='white') Белый

@@ -1,0 +1,82 @@
+extends ../../../layout
+
+block title
+	title РАСПИСАНИЕ НА #{year} ГОД
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/styles/add.css')
+
+block content_scripts
+	script(type='text/javascript', src='/scripts/add.js')
+	script(type='text/javascript', src='/scripts/lists.js')
+
+block content_right
+	- var months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
+	- obj = {}
+	.navigator
+		.nav_title ДОБАВИТЬ ДАТУ
+		form(action="/auth/add/schedule/" + year, method="post", enctype="multipart/form-data")
+			.nav_forms
+				select(name='schedule[date]')
+					option(value='') Дата
+					- for (var i=1; i<32; i++)
+						option(value=i)= i
+				select(name='schedule[month]')
+					option(value='') Месяц
+					each month, i in months
+						option(value=i)= month
+				input(type='hidden', name='schedule[year]', value=year)
+				.form_submit Добавить
+				br
+		.nav_title РАСПИСАНИЕ
+		each date in schedule
+			- obj[date.date.getMonth()] = true
+		- res = Object.keys(obj)
+		each numb in res
+			.nav_item= months[numb]
+
+mixin scheduleMonths(title, numb)
+	- var month = true
+	each date in schedule
+		if (date.date.getMonth() + 1 == numb)
+			if (month)
+				.form_section= title
+				- month = false
+			- var d = date.date.getDate()
+			- var m = date.date.getMonth()+1
+			- d = d < 10 ? '0' + d : d
+			- m = m < 10 ? '0' + m : m
+			.schedule_item
+				a.rm_schedule(href='#', id=date._id) удалить
+				.spacer |
+				a.schedule_date(href= year + '/' + date._id)= d + '.' + m
+				.spacer |
+				- var banner = 0
+				- var premiere = 0
+				each event in date.events
+					if (event.premiere == 'true')
+						- premiere++
+					if (event.banner == 'true')
+						- banner++
+				b= 'баннеров: ' + banner
+				.spacer |
+				b= 'премьер: ' + premiere
+				br
+
+block content
+	.form_block
+		a.back_link(href='/auth') < Назад
+		.title РАСПИСАНИЕ НА #{year} ГОД
+			if (schedule)
+				+scheduleMonths('Январь', 1)
+				+scheduleMonths('Февраль', 2)
+				+scheduleMonths('Март', 3)
+				+scheduleMonths('Апрель', 4)
+				+scheduleMonths('Май', 5)
+				+scheduleMonths('Июнь', 6)
+				+scheduleMonths('Июль', 7)
+				+scheduleMonths('Август', 8)
+				+scheduleMonths('Сентябрь', 9)
+				+scheduleMonths('Октябрь', 10)
+				+scheduleMonths('Ноябрь', 11)
+				+scheduleMonths('Декабрь', 12)

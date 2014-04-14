@@ -1,0 +1,185 @@
+a,b {
+	font-size: 16px;
+}
+
+.main_menu_block {
+	margin-left: 10px;
+}
+
+.content_block {
+	min-height: 600px;
+	padding-bottom: 100px;
+	width: 928px;
+	background-color: white;
+	border: 1px solid black;
+}
+
+.head_title_block {
+	color: black;
+}
+
+.form_block {
+	position: relative;
+}
+
+input, textarea, select {
+	font-size: 16px;
+	margin-left: 10px;
+}
+
+.ru {
+	width: 440px;
+	display: inline-block;
+	margin-right: 10px;
+}
+
+.en {
+	width: 435px;
+	display: none;
+}
+
+.back_link {
+	margin-left: 10px;
+}
+
+.title {
+	margin-top: 20px;
+	margin-left: 10px;
+	font-size: 20pt;
+}
+
+.form_title	{
+	margin-top: 15px;
+	margin-bottom: 15px;
+	font-size: 14pt;
+	margin-left: 10px;
+}
+
+.form_section {
+	margin-left: 10px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font: 14pt/14pt 'Times';
+	font-weight: bold;
+}
+
+
+/*
+	Schedule
+*/
+
+.schedule_item {
+	margin-left: 10px;
+}
+
+.schedule_date {
+	font-size: 24px;
+}
+
+.date_event {
+	margin-left: 10px;
+}
+
+/*
+	Event
+*/
+
+.news_convert {
+	margin-top: 15px;
+	margin-left: 10px;
+	width: 115px;
+	cursor: pointer;
+	font-size: 24px;
+	border-bottom: 2px solid black;
+}
+
+
+
+.event_convert {
+	margin-top: 15px;
+	margin-left: 10px;
+	width: 120px;
+	cursor: pointer;
+	font-size: 24px;
+	border-bottom: 2px solid black;
+}
+
+.form_block_project {
+	display: none;
+}
+
+.project_convert {
+	margin-top: 15px;
+	margin-left: 10px;
+	width: 160px;
+	cursor: pointer;
+	font-size: 24px;
+	border-bottom: 2px solid black;
+}
+
+.add_child {
+	margin-left: 10px;
+	width: 190px;
+	cursor: pointer;
+	font-size: 24px;
+	border-bottom: 2px solid black;
+}
+
+/*
+	Navigator
+*/
+
+.navigator {
+	width: 150px;
+	float: right;
+	background-color: black;
+	color: white;
+	/*position: fixed;*/
+	padding: 10px;
+	/*font: 10pt/12pt 'Pragmatica';*/
+}
+
+.nav_item, .toggle_eng {
+	cursor: pointer;
+	display: block;
+}
+
+.nav_item:hover, .toggle_eng:hover {
+	text-decoration: underline;
+}
+
+.nav_forms select, .nav_forms input{
+	font-size: 11pt;
+	min-width: 64px;
+	margin: 0;
+}
+
+.form_submit {
+	margin-top: 5px;
+	cursor: pointer;
+}
+
+.form_submit:hover {
+	text-decoration: underline;
+}
+
+.nav_forms .form_submit {
+	margin-top: 10px;
+}
+
+.footer_block, .social_block {
+	display: none;
+}
+
+.spacer {
+	display: inline-block;
+	width: 10px;
+	text-align: center;
+	margin-right: 5px;
+	font-size: 12pt;
+}
+
+.tickets_list {
+	display: none;
+	margin-left: 40px;
+}

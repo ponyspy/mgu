@@ -1,0 +1,63 @@
+extends ../../layout
+
+block title
+	title ДОБАВИТЬ УЧАСТНИКА
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/styles/add.css')
+
+block content_scripts
+	script(type='text/javascript', src='/scripts/add.js')
+
+block content_right
+	.navigator
+		.nav_title УЧАСТНИКИ
+		.nav_project_children
+		br
+		b.nav_settings_title настройки
+		//- .draft черновик
+		.toggle_eng перевод
+		br
+		b.form_submit ОТПРАВИТЬ
+
+
+block content
+	a.back_link(href='/auth') < Назад
+	.title ДОБАВИТЬ УЧАСТНИКА
+	br
+	form(action="/auth/add/member", method="post", enctype="multipart/form-data")
+		.form_title Имя:
+		input.ru(type="text", name="ru[name]",)
+		input.en(type="text", name="en[name]", disabled)
+		.form_title Описание:
+		textarea.ru(name="ru[description]", rows="8",)
+		textarea.en(name="en[description]", rows="8", disabled)
+		.form_title Статус:
+		.snake
+			input.back(type="button", value="<")
+			select(name='status')
+				option(value='actor') Актер
+				option(value='director') Режиссер
+				option(value='author') Автор
+				option(value='playwright') Драматург
+				option(value='choreographer') Хореограф
+				option(value='composer') Композитор
+				option(value='photographer') Фотограф
+				option(value='artist') Художник
+				option(value='light_artist') Художник по свету
+				option(value='producer') Продюсер
+				option(value='curator') Куратор
+				option(value='lecturer') Лектор
+				option(value='theoretician') Теоретик
+				option(value='art_director') Художественный руководитель
+				option(value='sub_director') Помощник режисера
+				option(value='tech_director') Технический директор
+				option(value='video_artist') Видеохудожник
+				option(value='audio_director') Звукорежиссер
+				option(value='multi_artist') Мультимедиахудожник
+				option(value='scenographer') Сценограф
+				option(value='consultant') Консультант
+				option(value='effects') Спецэффекты
+			input.forward(type="button", value=">")
+		.form_title Фото:
+		input(type="file", name="img")

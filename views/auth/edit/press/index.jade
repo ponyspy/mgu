@@ -1,0 +1,23 @@
+extends ../../../layout
+
+block title
+	title СПИСОК ИСТОЧНИКОВ
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/styles/add.css')
+
+block content_scripts
+	script(type='text/javascript', src='/scripts/lists.js')
+
+block content
+	a.back_link(href='/auth') < Назад
+	.title СПИСОК ИСТОЧНИКОВ
+	br
+	.main_menu_block
+		each p in press
+			.news
+				a.rm_press(href='#', id=p._id)= 'удалить '
+				||&nbsp;
+				a(href='/auth/edit/press/' + p._id)= p.ru.author
+				br
+				br

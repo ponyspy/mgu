@@ -1,0 +1,210 @@
+.content_right_block {
+	float: right;
+}
+
+.ticket {
+	margin-bottom: 20px;
+}
+
+
+/*
+	Menu Block
+ */
+
+.upload {
+	width: 170px;
+	height: 30px;
+	background-color: red;
+	color: white;
+	text-align: center;
+	padding-top: 13px;
+	/*margin-top: 20px;*/
+	font: 12pt/14pt 'Pragmatica';
+	position: fixed;
+}
+
+.upload:hover {
+	background-color: white;
+	color: black;
+	cursor: pointer;
+}
+.settings {
+	width: 150px;
+	background-color: black;
+	clear: both;
+	margin-top: 63px;
+	color: white;
+	padding: 10px;
+	position: fixed;
+}
+
+.settings select {
+	min-width: 145px;
+}
+
+.settings .selected {
+	color: red;
+}
+
+.s_item:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+/*
+	Upload img
+ */
+
+.image_upload input {
+	opacity: 0;
+	position: absolute;
+}
+
+
+/*
+	Edit Members
+ */
+
+.m_title {
+	/*width: 200px;*/
+	float: left;
+}
+
+.m_edit {
+	/*width: 15px;*/
+	float: right;
+	color: red;
+	font-size: 18pt;
+	/*font-weight: bold;*/
+	cursor: pointer;
+	text-align: center;
+}
+
+.m_list {
+	/*clear: both;*/
+}
+
+.m_edit:hover {
+	color: black;
+}
+
+.add {
+	min-height: 10px;
+	max-height: 300px;
+	overflow: scroll;
+	overflow-x: hidden;
+	clear: both;
+	border-top: 2px solid black;
+	padding-top: 10px;
+}
+
+.add a {
+	font: 11pt/13pt 'PragmaticaB';
+	display: block;
+}
+
+.m_del {
+	width: 25px;
+	float: left;
+	clear: both;
+	font-size: 18pt;
+	color: red;
+	cursor: pointer;
+}
+
+.m_add {
+	width: 25px;
+	float: left;
+	font-size: 18pt;
+	color: red;
+	cursor: pointer;
+}
+
+.m_del:hover, .m_add:hover {
+	width: 40px;
+	color: black
+}
+
+.select_member {
+	background-color: red;
+}
+
+.m_search {
+	width: 130px;
+	height: 15px;
+	margin-left: 168px;
+	margin-top: -10px;
+	display: block;
+	font-size: 14px;
+	background-color: black;
+	color: white;
+	position: absolute;
+	border: 0px;
+	padding-bottom: 3px;
+	box-shadow: 0;
+}
+
+.column_placeholder {
+	background-color: red;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	width: 300px;
+	height: 2px;
+}
+
+
+/*
+	Grids block
+ */
+
+.marker:nth-child(odd).grid {
+	background-color: #915860;
+}
+
+.title, .s_title, .description, .comment, .ticket, .m_comment, .m_search, .a_name, .age, .duration {
+	outline: none;
+}
+
+.title, .s_title {
+	text-transform: uppercase;
+}
+
+.title.grid {
+	background-color: #b76951;
+}
+
+.s_title.grid {
+	background-color: #9d91b7;
+}
+
+.comment.grid {
+	background-color: #94b7a1;
+}
+
+.comment.grid {
+	background-color: #84b77f;
+}
+
+.column.grid {
+	background-color: #6ca2b7;
+}
+
+.description.grid {
+	background-color: #b7907f;
+}
+
+.m_comment.grid {
+	background-color: #744c91;
+}
+
+.a_name.grid {
+	background-color: #209166;
+}
+
+.age.grid {
+	background-color: #914133;
+}
+
+.duration.grid {
+	background-color: #69918a;
+}

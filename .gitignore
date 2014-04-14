@@ -1,0 +1,7 @@
+/node_modules*
+/db*
+/maket*
+/doc*
+/subl*
+/go.txt
+.DS_Store

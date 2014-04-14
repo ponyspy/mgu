@@ -1,0 +1,27 @@
+extends ../../../layout
+
+block title
+	title СПИСОК УЧАСТНИКОВ
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/styles/add.css')
+
+block content_scripts
+	script(type='text/javascript', src='/scripts/lists.js')
+
+block content_right
+
+block content
+	a.back_link(href='/auth') < Назад
+	.title СПИСОК УЧАСТНИКОВ
+	br
+	.main_menu_block
+		each member in members
+			.member
+				a.rm_member(href='#', id=member._id)= 'удалить '
+				||&nbsp;
+				a(href='/auth/edit/members/' + member._id)= member.ru.name
+				b= ' ---> '
+				a(href='/member/' + member._id, target='_blank') результат
+				br
+				br

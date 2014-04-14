@@ -1,0 +1,110 @@
+extends ../layout
+
+block title
+	title ЦИМ | НОВОСТИ
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/styles/index.css' + version)
+
+block content_scripts
+	script(type='text/javascript', src='/scripts/main.js' + version)
+	script(type='text/javascript', src='/scripts/jquery.parallax.js' + version)
+	//- script(type='text/javascript', src='/scripts/back.js' + version)
+
+block content_right
+	.tag_navigator
+		.tag_item.all все
+		.tag_title КАТЕГОРИИ
+		.tag_item.performance спектакль
+		.tag_item.lecture лекция
+		.tag_item.masterclass мастер-класс
+		.tag_item.exhibition выставка
+		.tag_item.concert концерт
+		.tag_item.storytallyng сторителлинг
+		.tag_title СПЕЦПРОЕКТЫ
+		.tag_item.education институт театра
+		.tag_item.blackbox blackbox
+		.tag_item.children детский цим
+
+mixin trimString(str)
+	- for (var i = 150; i < str.length; i++) {
+		- if (str[i] == '.' || str[i] == '?' || str[i] == '!') {
+			str = str.substr(0, i+1)
+		- }
+	- }
+	!= str
+
+mixin infiniteItem(item)
+	.infinite-item(class=item.status ? item.status : '')
+		a.item_title(href='/news/' + item._id)= item.ru.title.toUpperCase()
+		- var date = item.date.getDate() < 10 ? '0' + item.date.getDate() : item.date.getDate()
+		- var month = (item.date.getMonth() + 1) < 10 ? '0' + (item.date.getMonth() + 1) : (item.date.getMonth() + 1)
+		.item_date= date + ' ⋅ ' + month
+		if (item.poster)
+			img.item_img(src=item.poster)
+		else
+			.item_body
+				if (item.ru.title.length < 20)
+					+trimString(item.ru.body)
+
+block content
+	.main_poster_block
+		.main_poster_img(style=schedule.length == 0 ? 'height: 700px;' : '')
+			if (schedule.length != 0)
+				img.layer.image(src='')
+			else
+				.layer
+				.main_poster_skip
+					- var date = new Date()
+					- var months = ['ЯНВАРЬ', 'ФЕВРАЛЬ', 'МАРТ', 'АПРЕЛЬ', 'МАЙ', 'ИЮНЬ', 'ИЮЛЬ', 'АВГУСТ', 'СЕНТЯБРЬ', 'ОКТЯБРЬ', 'НОЯБРЬ', 'ДЕКАБРЬ'];
+					a(href='/afisha/' + date.getFullYear() + '/' + (date.getMonth()+1))
+						.cal_title.cal_title_big= months[date.getMonth()]
+					a(href='/afisha/' + date.getFullYear() + '/' + (date.getMonth()+2))
+						.cal_title.cal_title_big= months[date.getMonth()+1]
+					a(href='/afisha/' + date.getFullYear() + '/' + (date.getMonth()+3))
+						.cal_title.cal_title_big= months[date.getMonth()+2]
+			each date in schedule
+				each event in date.events
+					if (event.banner == 'true')
+						img.hide(src=event.event.photo)
+			.layer.round(style=schedule.length == 0 ? 'background-color: white;' : '')
+		if (schedule.length != 0)
+			each date in schedule
+				each event in date.events
+					if (event.banner == 'true')
+						.main_poster_cal
+							- var days = ['ВС','ПН','ВТ','СР','ЧТ','ПТ','СБ']
+							- var d = date.date.getDate()
+							- d = d < 10 ? '0' + d : d
+							.cal_date= days[date.date.getDay()] + '.' + d
+							- var hall = {'main': 'большой зал', 'black': 'черный зал', 'white': 'белый зал', 'cafe': 'кафе', 'lobby': 'фойе', '301': 'комната 301', '306': 'комната 306'}
+							.cal_schedule
+								.cal_time= event.time.hours + ':' + event.time.minutes
+								.cal_hall= hall[event.event.hall]
+								//- if (event.ticket)
+									a.cal_ticket(href=event.ticket, rel='nofollow', target='_blank') купить билет
+							a(href='/event/' + event.event._id)
+								.cal_title(class=event.event.ru.title.length < 12 ? 'cal_title_big' : '')= event.event.ru.title.toUpperCase()
+	.pin_news_block
+		.pin_news_scroll
+			each n in news
+				if (n.status == 'pin')
+					a.pin_news(href='/news/' + n._id)= n.ru.title.toUpperCase()
+
+	.infinite-container
+		.infinite-column
+			if (news[0])
+				+infiniteItem(news[0])
+			if (news[3])
+				+infiniteItem(news[3])
+		.infinite-column
+			if (news[1])
+				+infiniteItem(news[1])
+			if (news[4])
+				+infiniteItem(news[4])
+		.infinite-column
+			if (news[2])
+				+infiniteItem(news[2])
+			if (news[5])
+				+infiniteItem(news[5])
+	.loader

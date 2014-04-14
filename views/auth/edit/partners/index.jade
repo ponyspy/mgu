@@ -1,0 +1,23 @@
+extends ../../../layout
+
+block title
+	title СПИСОК ПАРТНЕРОВ
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/styles/add.css')
+
+block content_scripts
+	script(type='text/javascript', src='/scripts/lists.js')
+
+block content
+	a.back_link(href='/auth') < Назад
+	.title СПИСОК ПАРТНЕРОВ
+	br
+	.main_menu_block
+		each partner in partners
+			.news
+				a.rm_partner(href='#', id=partner._id)= 'удалить '
+				||&nbsp;
+				a(href='/auth/edit/partners/' + partner._id)= partner.ru.name
+				br
+				br

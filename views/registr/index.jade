@@ -1,0 +1,22 @@
+extends ../layout
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/styles/add_member.css')
+
+block content
+	h1 Регистрация
+	form(action='/registr', method='post')
+		|Email:
+		br
+		input(type='text', name='email', placeholder='john@appleseed.com')
+		br
+		|Логин:
+		br
+		input(type='text', name='login', placeholder='john')
+		br
+		|Пароль:
+		br
+		input(type='password', name='password')
+		br
+		br
+		input(type='submit', value='Отправить!')

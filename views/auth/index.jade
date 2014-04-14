@@ -1,0 +1,77 @@
+extends ../layout
+
+block title
+	title ЗВЕЗДОЧЕТ
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/styles/add.css')
+	if (session.user_id == '521211e2b063c72302000003')
+		link(rel='stylesheet', type='text/css', href='/styles/lol/bamburov.css')
+
+block content_scripts
+	if (session.user_id == '521211e2b063c72302000003')
+		script(type='text/javascript', src='/scripts/lol/bamburov.js')
+
+block content
+	a.back_link(href='/logout') Выход
+	if (session.user_id == '521211e2b063c72302000003')
+		.lol_title
+	.title.star ЗВЕЗДОЧЕТ
+	.main_menu_block
+		br
+		b Новости:
+		br
+		a(href='/auth/add/news')= ' добавить '
+		||
+		a(href='/auth/edit/news')= ' редактировать'
+		br
+		br
+		b Пресса:
+		br
+		a(href='/auth/add/press')= ' добавить '
+		||
+		a(href='/auth/edit/press')= ' редактировать'
+		br
+		br
+		b Партнеры:
+		br
+		a(href='/auth/add/partner')= ' добавить '
+		||
+		a(href='/auth/edit/partners')= ' редактировать'
+		br
+		br
+		b Учстники:
+		br
+		a(href='/auth/add/member')= ' добавить '
+		||
+		a(href='/auth/edit/members')= ' редактировать'
+		br
+		br
+		b Фотопоток:
+		br
+		a(href='/auth/add/photo')= ' добавить '
+		||
+		a(href='/auth/edit/photos')= ' редактировать'
+		br
+		br
+		b События:
+		br
+		a(href='/auth/add/event')= ' конструктор '
+		||
+		a(href='/auth/edit/events')= ' редактор'
+		br
+		br
+		b Спецпроекты:
+		br
+		a(href='/auth/add/project')= ' добавить '
+		||
+		a(href='/auth/edit/projects')= ' редактировать'
+		br
+		br
+		b Расписание:
+		br
+		a(href='/auth/add/schedule/2013')= ' 2013 '
+		||
+		a(href='/auth/add/schedule/2014')= ' 2014 '
+		br
+		br

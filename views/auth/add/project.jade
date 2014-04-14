@@ -1,0 +1,44 @@
+extends ../../layout
+
+block title
+	title ДОБАВИТЬ СПЕЦПРОЕКТ
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/styles/add.css')
+
+block content_scripts
+	script(type='text/javascript', src='/scripts/schedule.js')
+	script(type='text/javascript', src='/scripts/add.js')
+
+block content_right
+	.navigator
+		.nav_title СПЕЦПРОЕКТ
+		.nav_project_children
+		br
+		b.nav_settings_title настройки
+		//- .draft черновик
+		.toggle_eng перевод
+		br
+		b.form_submit ОТПРАВИТЬ
+
+block content
+	.form_block
+		a.back_link(href='/auth') < Назад
+		.title ДОБАВИТЬ СПЕЦПРОЕКТ
+		form(action="/auth/add/project", method="post", enctype="multipart/form-data")
+			.form_title Название:
+			input.ru(type="text", name="ru[title]",)
+			input.en(type="text", name="en[title]", disabled)
+			.form_title Описание:
+			textarea.ru(name="ru[description]", rows="8",)
+			textarea.en(name="en[description]", rows="8", disabled)
+			.form_title Cобытия:
+			.snake
+				input.minus(type="button", value="-")
+				select(name='events')
+					option(value='') нет
+					each event in events
+						option(value=event._id)= event.ru.title
+				br
+			br
+			input.plus(type="button", value="+")

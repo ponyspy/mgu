@@ -1,0 +1,33 @@
+extends ../layout
+
+block title
+	title= news.ru.title.toUpperCase()
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/styles/content.css' + version)
+
+block content_scripts
+	//- script(type='text/javascript', src='/scripts/back.js' + version)
+
+block content_right
+	.content_right_block
+		if (session.user_id)
+			a.edit_btn(href='/auth/edit/news/' + news._id, target='_blank') РЕДАКТИРОВАТЬ
+		if (news.events)
+			.pin_events_block
+				.pin_events_scroll
+					each event in news.events
+						a.pin_event_link(href='/event/' + event._id)
+							.pin_event
+								.pin_event_titile= event.ru.title.toUpperCase()
+								.pin_event_s_titile= event.ru.s_title.toUpperCase()
+
+block content
+	if (news.photo)
+		.image_upload(style='background-image: url(' + news.photo + ')')
+	.content_body
+		.title= news.ru.title.toUpperCase()
+		if (news.ru.s_title)
+			.s_title= news.ru.s_title.toUpperCase()
+		.description(lang='ru')
+			!= news.ru.body

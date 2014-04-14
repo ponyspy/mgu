@@ -1,0 +1,25 @@
+extends ../../../layout
+
+block title
+	title СПИСОК НОВОСТЕЙ
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/styles/add.css')
+
+block content_scripts
+	script(type='text/javascript', src='/scripts/lists.js')
+
+block content
+	a.back_link(href='/auth') < Назад
+	.title СПИСОК НОВОСТЕЙ
+	br
+	.main_menu_block
+		each n in news
+			.news
+				a.rm_news(href='#', id=n._id)= 'удалить '
+				||&nbsp;
+				a(href='/auth/edit/news/' + n._id)= n.ru.title
+				b= ' ---> '
+				a(href='/news/' + n._id, target='_blank') результат
+					br
+					br

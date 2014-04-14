@@ -1,0 +1,44 @@
+extends ../../../layout
+
+block title
+	title РЕДАКТИРОВАТЬ ИСТОЧНИК
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/styles/add.css')
+
+block content_scripts
+	script(type='text/javascript', src='/scripts/add.js')
+
+block content_right
+	.navigator
+		.nav_title ПРЕССА
+		.nav_project_children
+		br
+		b.nav_settings_title настройки
+		//- .draft черновик
+		.toggle_eng перевод
+		br
+		b.form_submit ОТПРАВИТЬ
+
+block content
+	.form_block
+		a.back_link(href='/auth/edit/press') < Назад
+		.title РЕДАКТИРОВАТЬ ИСТОЧНИК
+		br
+		form(action="", method="post", enctype="multipart/form-data")
+			.form_title Автор:
+			input.ru(type="text", name="ru[author]", value=press.ru.author)
+			input.en(type="text", name="en[author]", value=press.en.author, disabled)
+			.form_title Описание:
+			textarea.ru(name="ru[body]", rows="8",)= press.ru.body
+			textarea.en(name="en[body]", rows="8", disabled)= press.en.body
+			.form_title Ссылка:
+			input(type="text", name="link",  size='60', value=press.link)
+			.form_title Прикрепить события:
+			.snake
+				input.back(type="button", value="<")
+				select(name='events')
+					option(value='') нет
+					each event in events
+						option(value=event._id)= event.ru.title
+				input.forward(type="button", value=">")
