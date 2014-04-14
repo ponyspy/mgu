@@ -1,115 +1,19 @@
-doctype 5
+doctype html
 html
 	head
 		include header
 	body
 		include counters
-		if (photos)
-			.photo_stream
-				.stream_roller
-				.stream_title ФОТОПОТОК
-			.background_block
-				.background_description_block
-					if (photos.length != 0)
-						.b_author= photos[0].ru.author
-						.b_description= photos[0].ru.description
-				each photo in photos
-					.background_item(style='background-image: url(' + photo.image + ')')
-						.item_author= photo.ru.author
-						.item_description= photo.ru.description
 		.maket
 			.main_block
 				.header_block
-					//- .line_block
-					a(href='/')
-						.head_title_block ЦЕНТР ИМЕНИ ВС. МЕЙЕРХОЛЬДА
 					.menu_block
-						.pay БИЛЕТЫ ON-line
-							.pay_drop
-								a(href='http://bigbilet.ru/company/card?id=A88F2473BE633D61E040115529B0081A#_', rel='nofollow', target='_blank') BIGBILET
-								!=' &nbsp;|&nbsp; '
-								a(href='http://www.ticketland.ru/buildinfo/1571/', rel='nofollow', target='_blank') TICKETLAND
-						.menu_item афиша
-							.menu_drop
-								- var months = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'];
-								- var date = new Date()
-								a(href='/afisha/' + date.getFullYear() + '/' + (date.getMonth()+1))=  months[date.getMonth()]
-								a(href='/afisha/' + date.getFullYear() + '/' + (date.getMonth()+2))= months[date.getMonth()+1]
-								a(href='/afisha/' + date.getFullYear() + '/' + (date.getMonth()+3))= months[date.getMonth()+2]
-								//- a(href='/afisha/archive') архив
-						.menu_item цим
-							.menu_drop
-								if (session.user_id)
-									a(href='/auth') звездочет
-								a(href='/') новости
-								a(href='/now') цим сегодня
-								//- a(href='/team') команда
-								//- a(href='/members') участники
-								//- a(href='/partners') партнеры
-								a(href='http://shtl.meyerhold.ru') штл
-								//- a(href='/magistr') магистратура
-								a(href='http://old.meyerhold.ru') старый сайт
-								a(href='/history') история
-								a(href='/fokin') фокин
-								a(href='/contacts') контакты
-						.banner_block
-							//- a(href='http://kudago.com/msk/', title='Афиша в Москве', target='_blank')
-								img.banner_item(src='/images/design/banners/banner.png')
-							a(href='http://www.ticketland.ru/buildinfo/1571/', title='Купить билет', target='_blank')
-								img.banner_item(src='/images/design/banners/banner2.png')
-						//- .locale eng
-						//- input.search(type='text')
-						//- .search_submit поиск
-				block content_left
-				block content_right
+				.content_left_block
+					block content_left
+				.content_right_block
+					block content_right
 				.content_block
 					block content
-				block content_under
-				.footer_block.color
-					.footer_logo
-					.footer_description.color
-						|ЦЕНТР ИМЕНИ ВС. МЕЙЕРХОЛЬДА
-						br
-						|М. МЕНДЕЛЕЕВСКАЯ
-						br
-						|УЛ. НОВОСЛОБОДСКАЯ, 23
-						br
-						a.color(href='/') WWW.MEYERHOLD.RU
-						br
-						br
-						b Художественный руководитель
-						br
-						|Виктор РЫЖАКОВ
-					.footer_column.color
-						b Билетный стол
-						br
-						a.color(href='mailto:b.s.meyerhold@mail.ru') B.S.MEYERHOLD@MAIL.RU
-						br
-						|(495) 363 10 48 | (926) 313 42 86
-						br
-						br
-						b Канцелярия
-						br
-						a.color(href='mailto:meyerhold.403@gmail.com') MEYERHOLD.403@GMAIL.COM
-						br
-						|(495) 363 10 46 | (495) 363 10 41 / факс
-					.footer_column.color
-						b Пресс-секретарь
-						br
-						a.color(href='mailto:bamburov.kirill@gmail.com') BAMBUROV.KIRILL@GMAIL.COM
-						br
-						|(915) 069 91 77
-						br
-						br
-						b Коммерческий отдел
-						br
-						a.color(href='mailto:meyerhold.408@gmail.com') MEYERHOLD.408@GMAIL.COM
-				.social_block
-						a(href='https://twitter.com/meyerholdcentre', target='_blank')
-							img.social_item(src='/images/design/social/twitter.png')
-						a(href='http://instagram.com/meyerholdcentre', target='_blank')
-							img.social_item(src='/images/design/social/instagram.png')
-						a(href='https://www.facebook.com/meyerhold', target='_blank')
-							img.social_item(src='/images/design/social/facebook.png')
-						a(href='http://vk.com/vs.meyerhold', target='_blank')
-							img.social_item(src='/images/design/social/vk.png')
+				.content_under_block
+					block content_under
+				.footer_block
