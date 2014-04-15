@@ -18,6 +18,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.locals.pretty = true;
 
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser({ keepExtensions: true, uploadDir:__dirname + '/uploads' }));
 app.use(methodOverride());
 app.use(cookieParser());
@@ -31,12 +32,10 @@ app.use(session({
   }
 }));
 
-app.use(express.static(__dirname + '/public'));
 app.use(function(req, res, next) {
   res.locals.session = req.session;
   next();
 });
-// app.use(app.router);
 
 
 // app.use(function(req, res, next) {
