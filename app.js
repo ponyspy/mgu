@@ -2,17 +2,22 @@ var fs = require('fs');
 var gm = require('gm').subClass({ imageMagick: true });
 var async = require('async');
 
-var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var methodOverride = require('method-override');
-    var app = express();
 
-var mongoose = require('mongoose');
-    var models = require('./models/main.js');
+var express = require('express'),
+    app = express();
 
-mongoose.connect('localhost', 'main');
+var passport = require('passport'),
+    LocalStrategy = require('passport-local').Strategy,
+    FacebookStrategy = require('passport-facebook').Strategy;
+
+var mongoose = require('mongoose'),
+    models = require('./models/main.js');
+    mongoose.connect('localhost', 'main');
+
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
@@ -31,6 +36,7 @@ app.use(session({
     maxAge: 1000 * 60 * 60 // 1 hour
   }
 }));
+
 
 app.use(function(req, res, next) {
   res.locals.session = req.session;
@@ -75,14 +81,6 @@ app.use(function(req, res, next) {
 
 
 var User = models.User;
-var Member = models.Member;
-var Event = models.Event;
-var News = models.News;
-var Press = models.Press;
-var Partner = models.Partner;
-var Photo = models.Photo;
-var Schedule = models.Schedule;
-var Project = models.Project;
 
 
 // ------------------------
