@@ -1,6 +1,6 @@
 {
     "main": {
       "title": "Base title",
-      "menu": "Menu"
+      "description": "Base description"
     }
 }
