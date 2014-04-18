@@ -1,6 +1,7 @@
 {
-    "app": {
+    "main": {
       "title": "Тема урока",
-      "lesson": "Урок: __count__"
+      "lesson": "Урок: __count__",
+      "description": "Описание урока"
     }
 }
