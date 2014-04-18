@@ -1,13 +1,7 @@
 {
-    "app": {
-      "name": "i18n",
-      "hello": "hello",
-      "money": "money",
-      "insert": "you are __youAre__",
-      "child": "__count__ child",
-      "child_plural": "__count__ children",
-      "friend_context": "A friend",
-      "friend_context_male": "A boyfriend",
-      "friend_context_female": "A girlfriend"
+    "main": {
+    	"lesson": "Lesson: __count__",
+      "title": "Lesson Title",
+      "description": "Lesson description"
     }
 }

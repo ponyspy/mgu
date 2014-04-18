@@ -46,7 +46,7 @@ app.use(function(req, res, next) {
 
 
 i18n.init({
-    ns: { namespaces: ['ns.common', 'ns.lesson'], defaultNs: 'ns.lesson'},
+    ns: { namespaces: ['ns.scene', 'ns.lesson'], defaultNs: 'ns.lesson'},
     resSetPath: __dirname + '/locales/__lng__/new.__ns__.json',
     saveMissing: true,
     debug: true,

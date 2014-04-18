@@ -16,9 +16,10 @@ block content
 	a#en(href='/?setLng=en-US') en-US
 	br
 	a#de(href='/?setLng=ru-RU') ru-RU
-	p= t('app.name')
-	p= t('app.hello')
-	p= t('app.money')
-	//- p= t('app.title')
-	//- p= t('app.scene', {count: 2})
-	//- p= t('app.stitle')
+	p= t('main.lesson', {count: 1})
+	p= t('main.title')
+	p= t('main.description')
+	br
+	p= t('ns.scene:main.scene', {count: 1})
+	p= t('ns.scene:main.title')
+	p= t('ns.scene:main.description')
