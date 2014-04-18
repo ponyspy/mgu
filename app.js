@@ -46,8 +46,11 @@ app.use(function(req, res, next) {
 
 
 i18n.init({
+    ignoreRoutes: ['public/'],
     ns: { namespaces: ['ns.scene', 'ns.lesson', 'ns.global'], defaultNs: 'ns.global'},
     resSetPath: __dirname + '/locales/__lng__/new.__ns__.json',
+    useCookie: true,
+    cookieName: 'lang',
     saveMissing: true,
     debug: true,
     sendMissingTo: 'fallback'
