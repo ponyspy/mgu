@@ -2,22 +2,20 @@ var fs = require('fs');
 var gm = require('gm').subClass({ imageMagick: true });
 var async = require('async');
 
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-var session = require('express-session');
-var methodOverride = require('method-override');
-
-var express = require('express'),
-    app = express();
-
 var passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
     FacebookStrategy = require('passport-facebook').Strategy;
 
 var mongoose = require('mongoose'),
     models = require('./models/main.js');
-    mongoose.connect('localhost', 'main');
+      mongoose.connect('localhost', 'main');
 
+var express = require('express'),
+    bodyParser = require('body-parser'),
+    cookieParser = require('cookie-parser'),
+    session = require('express-session'),
+    methodOverride = require('method-override'),
+      app = express();
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
