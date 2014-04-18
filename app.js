@@ -1,6 +1,7 @@
 var fs = require('fs');
 var gm = require('gm').subClass({ imageMagick: true });
 var async = require('async');
+var i18n = require('i18next');
 
 var passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
@@ -26,6 +27,8 @@ app.use(bodyParser({ keepExtensions: true, uploadDir:__dirname + '/uploads' }));
 app.use(methodOverride());
 app.use(cookieParser());
 
+app.use(i18n.handle);
+
 app.use(session({
   key: 'mgu.sess',
   secret: 'keyboard cat',
@@ -41,6 +44,16 @@ app.use(function(req, res, next) {
   next();
 });
 
+
+i18n.init({
+    ns: { namespaces: ['ns.common', 'ns.lesson'], defaultNs: 'ns.lesson'},
+    resSetPath: __dirname + '/locales/__lng__/new.__ns__.json',
+    saveMissing: true,
+    debug: true,
+    sendMissingTo: 'fallback'
+});
+
+i18n.registerAppHelper(app);
 
 // app.use(function(req, res, next) {
 //   res.status(404);

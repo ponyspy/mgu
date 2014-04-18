@@ -13,3 +13,10 @@ block content_scripts
 
 block content
 	h1 cool!
+	a#en(href='/?setLng=en-US') en-US
+	br
+	a#de(href='/?setLng=ru-RU') ru-RU
+	p= t('app.name')
+	//- p= t('app.title')
+	//- p= t('app.scene', {count: 2})
+	//- p= t('app.stitle')
