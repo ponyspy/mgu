@@ -1,7 +1,6 @@
 var fs = require('fs');
 var gm = require('gm').subClass({ imageMagick: true });
 var async = require('async');
-var i18n = require('i18next');
 
 var passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
@@ -27,8 +26,6 @@ app.use(bodyParser({ keepExtensions: true, uploadDir:__dirname + '/uploads' }));
 app.use(methodOverride());
 app.use(cookieParser());
 
-app.use(i18n.handle);
-
 app.use(session({
   key: 'mgu.sess',
   secret: 'keyboard cat',
@@ -44,19 +41,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-
-i18n.init({
-    ignoreRoutes: ['public/'],
-    ns: { namespaces: ['ns.scene', 'ns.lesson', 'ns.global'], defaultNs: 'ns.global'},
-    resSetPath: __dirname + '/locales/__lng__/new.__ns__.json',
-    useCookie: true,
-    cookieName: 'lang',
-    saveMissing: true,
-    debug: true,
-    sendMissingTo: 'fallback'
-});
-
-i18n.registerAppHelper(app);
 
 // app.use(function(req, res, next) {
 //   res.status(404);
@@ -95,6 +79,8 @@ i18n.registerAppHelper(app);
 
 
 var User = models.User;
+var Test = models.Test;
+
 
 
 // ------------------------
@@ -146,7 +132,15 @@ var deleteFolderRecursive = function(path) {
 var main = app.route('/');
 
 main.get(function(req, res) {
-  res.render('index');
+  var test = new Test();
+
+  test.title.ru = 'зло';
+  test.title.en = 'zlo';
+  test.description.ru = 'Вот это описание!'
+
+  test.save(function(err, d) {
+    res.render('index');
+  });
 });
 
 
