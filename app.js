@@ -137,13 +137,16 @@ main.get(function(req, res) {
   test.title.ru = 'зло';
   test.title.en = 'zlo';
   test.description.ru = 'Вот это описание!';
+  test.description.en = 'Super description!';
   test.comments.title.ru = 'Уауауау!';
   test.comments.title.en = 'Uauauauaua!';
 
   test.save();
 
+  req.session.locale = 'ru';
+
   Test.find().exec(function(err, tests) {
-    res.render('index', {tests: tests, locale: 'ru'});
+    res.render('index', {tests: tests});
   });
 });
 

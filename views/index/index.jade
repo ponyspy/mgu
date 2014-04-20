@@ -12,8 +12,11 @@ block content_scripts
 	//- script(type='text/javascript', src='/scripts/back.js' + version)
 
 block content
+	- var locale = session.locale
 	h1 cool
 	each test in tests
 		b=test.title[locale]
+		br
+		b=test.description[locale]
 		br
 		br
