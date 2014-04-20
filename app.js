@@ -133,6 +133,8 @@ var deleteFolderRecursive = function(path) {
 var main = app.route('/');
 
 main.get(function(req, res) {
+  var user_lang = req.headers["accept-language"];
+  console.log(user_lang)
 
   var test = new Test();
 
