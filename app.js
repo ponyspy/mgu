@@ -136,10 +136,14 @@ main.get(function(req, res) {
 
   test.title.ru = 'зло';
   test.title.en = 'zlo';
-  test.description.ru = 'Вот это описание!'
+  test.description.ru = 'Вот это описание!';
+  test.comments.title.ru = 'Уауауау!';
+  test.comments.title.en = 'Uauauauaua!';
 
-  test.save(function(err, d) {
-    res.render('index');
+  test.save();
+
+  Test.find().exec(function(err, tests) {
+    res.render('index', {tests: tests, locale: 'ru'});
   });
 });
 

@@ -18,6 +18,12 @@ var TestSchema = new Schema({
   description: {
     type: String,
     i18n: true
+  },
+  comments: {
+  	title: {
+  		type: String,
+  		i18n: true
+  	}
   }
 });
 
