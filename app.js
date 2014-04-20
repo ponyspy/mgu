@@ -38,6 +38,7 @@ app.use(session({
 
 app.use(function(req, res, next) {
   res.locals.session = req.session;
+  res.locals.locale = req.cookies.locale || 'ru';
   next();
 });
 
@@ -132,6 +133,7 @@ var deleteFolderRecursive = function(path) {
 var main = app.route('/');
 
 main.get(function(req, res) {
+
   var test = new Test();
 
   test.title.ru = 'зло';
@@ -143,11 +145,20 @@ main.get(function(req, res) {
 
   test.save();
 
-  req.session.locale = 'ru';
-
   Test.find().exec(function(err, tests) {
     res.render('index', {tests: tests});
   });
+});
+
+
+// ------------------------
+// *** Set Locale Block ***
+// ------------------------
+
+
+app.route('/lang/:locale').get(function(req, res) {
+  res.cookie('locale', req.params.locale);
+  res.redirect('back');
 });
 
 
