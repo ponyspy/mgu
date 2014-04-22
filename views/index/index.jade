@@ -8,7 +8,6 @@ block content_style
 
 block content_scripts
 	script(type='text/javascript', src='/scripts/main.js' + version)
-	//- script(type='text/javascript', src='/scripts/jquery.parallax.js' + version)
 
 block content
 	h1 cool
@@ -20,8 +19,8 @@ block content
 	br
 	br
 	each test in tests
-		b=test.title[locale]
+		b=test.title[locale] || test.title.i18n
 		br
-		b=test.description[locale]
+		b=test.description[locale] || test.description.i18n
 		br
 		br
