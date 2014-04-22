@@ -27,7 +27,7 @@ var TestSchema = new Schema({
   }
 });
 
-TestSchema.plugin(i18nMongoose, {languages: ['en', 'ru'], currentLanguage: 'ru'});
+TestSchema.plugin(i18nMongoose, {languages: ['en', 'ru'], defaultLanguage: 'ru'});
 
 module.exports.Test = mongoose.model('Test', TestSchema);
 

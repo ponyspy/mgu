@@ -148,6 +148,7 @@ main.get(function(req, res) {
   test.save();
 
   Test.find().exec(function(err, tests) {
+    console.log(tests[0].title.i18n)
     res.render('index', {tests: tests});
   });
 });
