@@ -8,6 +8,10 @@ password: String,
    email: String,
   status: {type: String, default: 'User'},
     date: {type: Date, default: Date.now},
+    blocks: [{
+      block: { type: Schema.Types.ObjectId, ref: 'Block' },
+      progress: Number
+    }]
 });
 
 var courseSchema = new Schema({
@@ -36,7 +40,10 @@ var sceneSchema = new Schema({
 var blockSchema = new Schema({
     category: String,
     exercises: [{ type: Schema.Types.ObjectId, ref: 'Exercise' }],
-    static_content: [String],
+    static_content: [{
+      title: String,
+      content: String
+    }],
     date: {type: Date, default: Date.now},
 });
 
