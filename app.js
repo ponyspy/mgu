@@ -84,7 +84,6 @@ var Test = models.Test;
 var User = models.User;
 var Course = models.Course;
 var Lesson = models.Lesson;
-var Scene = models.Scene;
 var Block = models.Block;
 var Exercise = models.Exercise;
 
