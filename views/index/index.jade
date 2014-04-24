@@ -1,4 +1,5 @@
 extends ../layout
+include ../exercises
 
 block title
 	title cool!
@@ -18,6 +19,8 @@ block content
 	a(href='/lang/en') en
 	br
 	br
+	+ex1()
+	+ex2()
 	each test in tests
 		b=test.title[locale] || test.title.i18n
 		br
