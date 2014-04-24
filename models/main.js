@@ -24,10 +24,14 @@ var courseSchema = new Schema({
 var lessonSchema = new Schema({
 		title: String,
 		description: String,
-		scenes: [{ type: Schema.Types.ObjectId, ref: 'Block' }],
-		blocks: [{ type: Schema.Types.ObjectId, ref: 'Block' }],
-		test: [{ type: Schema.Types.ObjectId, ref: 'Exercise' }],
-		examination: [{ type: Schema.Types.ObjectId, ref: 'Exercise' }],
+		stat: {
+			blocks: [{ type: Schema.Types.ObjectId, ref: 'Block' }],
+			test: [{ type: Schema.Types.ObjectId, ref: 'Exercise' }],
+		},
+		non_stat: {
+			blocks: [{ type: Schema.Types.ObjectId, ref: 'Block' }],
+			test: [{ type: Schema.Types.ObjectId, ref: 'Exercise' }],
+		},
 		date: {type: Date, default: Date.now},
 });
 
@@ -46,6 +50,13 @@ var blockSchema = new Schema({
 var exerciseSchema = new Schema({
 		type: {type: String, default: 'Base'},
 		task: String,
+		answer: Schema.Types.Mixed,
+		words: [String],
+		audio: [String],
+		video: [{
+			path: String,
+			subs: [String]
+		}],
 		date: {type: Date, default: Date.now},
 });
 
