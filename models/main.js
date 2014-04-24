@@ -24,18 +24,16 @@ var courseSchema = new Schema({
 var lessonSchema = new Schema({
 		title: String,
 		description: String,
-		stat: {
-			blocks: [{ type: Schema.Types.ObjectId, ref: 'Block' }],
-			test: [{ type: Schema.Types.ObjectId, ref: 'Exercise' }],
-		},
-		non_stat: {
-			blocks: [{ type: Schema.Types.ObjectId, ref: 'Block' }],
-			test: [{ type: Schema.Types.ObjectId, ref: 'Exercise' }],
+		blocks: [{ type: Schema.Types.ObjectId, ref: 'Block' }],
+		test: {
+			type: String,
+			exercises: [{ type: Schema.Types.ObjectId, ref: 'Exercise' }],
 		},
 		date: {type: Date, default: Date.now},
 });
 
 var blockSchema = new Schema({
+		type: {type: String, default: 'Stat'},
 		title: String,
 		description: String,
 		vocabulary: [String],
