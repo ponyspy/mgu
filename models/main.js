@@ -35,14 +35,23 @@ var blockSchema = new Schema({
 		vocabulary: [String],
 		exercises: [{
 			title: String,
-			main: [{ type: Schema.Types.ObjectId, ref: 'Exercise' }],
-			second: [{ type: Schema.Types.ObjectId, ref: 'Exercise' }]
+			categorys: [{
+				title: String,
+				main: [{ type: Schema.Types.ObjectId, ref: 'Exercise' }],
+				second: [{ type: Schema.Types.ObjectId, ref: 'Exercise' }]
+			}]
 		}],
-		static_content: [{
+		static_content: {
 			title: String,
-			content: [String]
-		}],
-		test: [{ type: Schema.Types.ObjectId, ref: 'Exercise' }],
+			content: [{
+				title: String,
+				body: String
+			}]
+		},
+		test: {
+			title: String,
+			exercises: [{ type: Schema.Types.ObjectId, ref: 'Exercise' }]
+		},
 		date: {type: Date, default: Date.now},
 });
 
