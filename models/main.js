@@ -9,7 +9,7 @@ var userSchema = new Schema({
 		status: {type: String, default: 'User'},
 		exercises: [{
 			exercise: { type: Schema.Types.ObjectId, ref: 'Exercise' },
-			progress: Number
+			status: Boolean
 		}],
 		date: {type: Date, default: Date.now},
 });
@@ -25,23 +25,24 @@ var lessonSchema = new Schema({
 		title: String,
 		description: String,
 		blocks: [{ type: Schema.Types.ObjectId, ref: 'Block' }],
-		test: {
-			type: String,
-			exercises: [{ type: Schema.Types.ObjectId, ref: 'Exercise' }],
-		},
 		date: {type: Date, default: Date.now},
 });
 
 var blockSchema = new Schema({
-		type: {type: String, default: 'Stat'},
+		stat: Boolean,
 		title: String,
 		description: String,
 		vocabulary: [String],
-		exercises: [{ type: Schema.Types.ObjectId, ref: 'Exercise' }],
+		exercises: [{
+			title: String,
+			main: [{ type: Schema.Types.ObjectId, ref: 'Exercise' }],
+			second: [{ type: Schema.Types.ObjectId, ref: 'Exercise' }]
+		}],
 		static_content: [{
 			title: String,
-			content: String
+			content: [String]
 		}],
+		test: [{ type: Schema.Types.ObjectId, ref: 'Exercise' }],
 		date: {type: Date, default: Date.now},
 });
 
@@ -49,7 +50,9 @@ var exerciseSchema = new Schema({
 		type: {type: String, default: 'Base'},
 		task: String,
 		answer: Schema.Types.Mixed,
+		text: String,
 		words: [String],
+		images: [String],
 		audio: [String],
 		video: [{
 			path: String,
