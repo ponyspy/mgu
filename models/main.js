@@ -18,6 +18,10 @@ var courseSchema = new Schema({
 		title: String,
 		description: String,
 		lessons: [{ type: Schema.Types.ObjectId, ref: 'Lesson' }],
+		locale: {
+			languages: [String],
+			def: String
+		},
 		date: {type: Date, default: Date.now},
 });
 
@@ -29,18 +33,9 @@ var lessonSchema = new Schema({
 });
 
 var blockSchema = new Schema({
-		stat: Boolean,
 		title: String,
-		description: String,
 		vocabulary: [String],
-		exercises: [{
-			title: String,
-			categorys: [{
-				title: String,
-				main: [{ type: Schema.Types.ObjectId, ref: 'Exercise' }],
-				second: [{ type: Schema.Types.ObjectId, ref: 'Exercise' }]
-			}]
-		}],
+		categorys: [{ type: Schema.Types.ObjectId, ref: 'Category' }],
 		static_content: {
 			title: String,
 			content: [{
@@ -52,6 +47,14 @@ var blockSchema = new Schema({
 			title: String,
 			exercises: [{ type: Schema.Types.ObjectId, ref: 'Exercise' }]
 		},
+		date: {type: Date, default: Date.now},
+});
+
+var categorySchema = new Schema({
+		stat: Boolean,
+		title: String,
+		description: String,
+		exercises: [{ type: Schema.Types.ObjectId, ref: 'Exercise' }],
 		date: {type: Date, default: Date.now},
 });
 
@@ -67,6 +70,7 @@ var exerciseSchema = new Schema({
 			path: String,
 			subs: [String]
 		}],
+		exercises: [{ type: Schema.Types.ObjectId, ref: 'Exercise' }],
 		date: {type: Date, default: Date.now},
 });
 
@@ -98,4 +102,5 @@ module.exports.User = mongoose.model('User', userSchema);
 module.exports.Course = mongoose.model('Course', courseSchema);
 module.exports.Lesson = mongoose.model('Lesson', lessonSchema);
 module.exports.Block = mongoose.model('Block', blockSchema);
+module.exports.Category = mongoose.model('Category', categorySchema);
 module.exports.Exercise = mongoose.model('Exercise', exerciseSchema);
