@@ -138,6 +138,20 @@ var deleteFolderRecursive = function(path) {
 var main = app.route('/');
 
 main.get(function(req, res) {
+  Course.find().exec(function(err, courses) {
+    res.render('main', {courses: courses});
+  });
+});
+
+
+// ------------------------
+// *** Test Block ***
+// ------------------------
+
+
+var test = app.route('/test');
+
+test.get(function(req, res) {
   var user_lang = req.headers["accept-language"];
   console.log(user_lang)
 
@@ -153,7 +167,7 @@ main.get(function(req, res) {
   test.save();
 
   Test.find().exec(function(err, tests) {
-    res.render('index', {tests: tests});
+    res.render('test', {tests: tests});
   });
 });
 
@@ -166,6 +180,18 @@ main.get(function(req, res) {
 app.route('/lang/:locale').get(function(req, res) {
   res.cookie('locale', req.params.locale);
   res.redirect('back');
+});
+
+
+// ------------------------
+// *** Course Block ***
+// ------------------------
+
+
+var course = app.route('/course/:id');
+
+course.get(function(req, res) {
+  res.render('course', {course: course})
 });
 
 
